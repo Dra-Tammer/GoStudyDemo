@@ -1,6 +1,6 @@
 # 创建这个文件来写我们的配置项
 server:
-  port:1016
+  port: 8081
 # 数据库的配置
 datasource:
   driverName: mysql

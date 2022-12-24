@@ -1,16 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"log"
 	"os"
 )
 
 func main() {
-	//从程序的一开始就读取我们的配置
-	//测试一下git好着没
-	fmt.Println("测试一下git")
 	InitConfig()
 	r := gin.Default()
 	r = CollectRoute(r)
@@ -34,6 +31,6 @@ func InitConfig() {
 	viper.AddConfigPath(workDir + "/config")
 	err := viper.ReadInConfig()
 	if err != nil {
-
+		log.Println(err)
 	}
 }

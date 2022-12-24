@@ -5,6 +5,7 @@ import (
 	"StudyDemo/LoginRegisterCheck/function"
 	"StudyDemo/LoginRegisterCheck/modules"
 	"StudyDemo/LoginRegisterCheck/response"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 	"log"
@@ -17,13 +18,21 @@ func UserInfo(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"code": 200,
 		"data": gin.H{
-			"user": dto.ToUserDto(user.(modules.User)),
+			"user": dto.ToUserDto(user.(*modules.User)),
 		},
 	})
 }
 
 func UserRegister(ctx *gin.Context) {
 	name := ctx.PostForm("name")
+	user, _ := function.CheckUserByName(name)
+	if user.ID > 0 {
+		ctx.JSON(http.StatusNotFound, gin.H{
+			"code": 404,
+			"msg":  "用户已注册，请登录",
+		})
+		return
+	}
 	password := ctx.PostForm("password")
 	//密码是不能明文保存的，创建用户的时候我们进行加密
 	hasedPassword, hasedErr := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
@@ -37,6 +46,7 @@ func UserRegister(ctx *gin.Context) {
 	}
 	err := function.SaveUser(newUser.Name, newUser.Password)
 	if err != nil {
+		fmt.Println("这里出现了错误")
 		log.Println(err)
 	}
 	response.Success(ctx, nil, "注册成功")
@@ -47,13 +57,12 @@ func UserLogin(ctx *gin.Context) {
 	password := ctx.PostForm("password")
 	user, _ := function.CheckUserByName(name)
 	if user.ID == 0 {
-		log.Println("查询的用户不存在")
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, nil, "该用户不存在")
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, nil, "该用户不存在，请先注册")
 		return
 	}
 	//解密判断密码是否正确
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
-		response.Response(ctx, http.StatusBadRequest, 400, nil, "密码错误")
+		response.Response(ctx, http.StatusBadRequest, 400, nil, "密码错误，请输入正确的密码")
 		return
 	}
 	//发放token
