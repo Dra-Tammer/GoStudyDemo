@@ -1,4 +1,4 @@
 # GoStudyDemo
-go learning program\n
+go learning program
 
 A repository to store go program after learning
