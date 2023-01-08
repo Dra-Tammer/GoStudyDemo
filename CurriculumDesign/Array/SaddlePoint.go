@@ -14,9 +14,9 @@ type SaddlePoint struct {
 
 func (SaddlePoint SaddlePoint) InitSaddlePointQuestion() (InitedArray SaddlePoint) {
 	fmt.Println("请输入行数和列数：")
-	_, err := fmt.Scanln(&SaddlePoint.Row, &SaddlePoint.Col)
+	_, err := fmt.Scan(&SaddlePoint.Row, &SaddlePoint.Col)
 	if err != nil {
-		log.Println(err)
+		log.Println("输入行数和列数这里", err)
 	}
 	SaddlePoint.Array = make([][]int, SaddlePoint.Row, SaddlePoint.Row)
 	fmt.Println(fmt.Sprintf("请创建一个%d*%d的矩阵：", SaddlePoint.Row, SaddlePoint.Col))
@@ -25,7 +25,7 @@ func (SaddlePoint SaddlePoint) InitSaddlePointQuestion() (InitedArray SaddlePoin
 			var Import int
 			_, err := fmt.Scan(&Import)
 			if err != nil {
-				log.Println(err)
+				log.Println("矩阵的初始化这里", err)
 			}
 			SaddlePoint.Array[i] = append(SaddlePoint.Array[i], Import)
 		}
@@ -68,5 +68,6 @@ func SaddlePointHandle(point SaddlePoint) {
 		for _, v := range point.TheSaddlePoint {
 			fmt.Printf("%d\t", v)
 		}
+		fmt.Println()
 	}
 }
