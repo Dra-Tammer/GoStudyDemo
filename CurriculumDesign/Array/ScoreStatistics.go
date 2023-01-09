@@ -39,7 +39,6 @@ func ScoreStatisticsHandle(scs ScoreStatistics) {
 			assist++
 			fmt.Printf("%d出现了%d次\t", k, v)
 		}
-
 	}
 	fmt.Printf("\n")
 }
