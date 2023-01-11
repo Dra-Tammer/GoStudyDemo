@@ -8,7 +8,9 @@ import (
 func InitPrimaryMenu() {
 	for true {
 		var choice = 0
-		println("请输入您的选择：1.排序\t2.数组\t3.退出")
+		fmt.Println("---------------------------------------")
+		fmt.Println("请输入您的选择：1.排序\t2.数组\t3.退出")
+		fmt.Println("---------------------------------------")
 		_, err := fmt.Scan(&choice)
 		if err != nil {
 			log.Println(err)

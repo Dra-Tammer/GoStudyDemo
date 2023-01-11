@@ -10,7 +10,9 @@ import (
 func SortMenu() {
 	for true {
 		var choice = 0
+		fmt.Println("---------------------------------------------------------")
 		fmt.Println("请输入您的选择：1.执行排序和比较程序\t2.返回上一级目录\t")
+		fmt.Println("---------------------------------------------------------")
 		_, err := fmt.Scan(&choice)
 		if err != nil {
 			log.Println(err)

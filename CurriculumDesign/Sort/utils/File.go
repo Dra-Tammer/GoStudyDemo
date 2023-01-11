@@ -13,7 +13,7 @@ func StoreFiles(SortedArray []int, SortName string) {
 	//拿到当下的时间，拼接到文件名的后面，防止重名
 	timeNow := time.Now().Unix()
 	//拼接文件的存储路径
-	fileStr := "D:/GoWorkPlace/src/StudyDemo/CurriculumDesign/Sort/ResultFile/" +
+	fileStr := "D:/WorkPlace/GoWorkPlace/src/StudyDemo/CurriculumDesign/Sort/ResultFile/" +
 		SortName + "-" + strconv.FormatInt(timeNow, 10) + ".txt"
 	//采用只读的方式访问文件，如果没有这个文件，就创建一个文件
 	file, err := os.OpenFile(fileStr, os.O_WRONLY|os.O_CREATE, 06666)

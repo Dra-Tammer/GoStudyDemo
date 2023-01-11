@@ -33,7 +33,7 @@ func ScoreStatisticsHandle(scs ScoreStatistics) {
 	var assist = 0
 	for k, v := range Statatistics {
 		if v > 1 {
-			if assist%9 == 0 {
+			if assist%7 == 0 {
 				fmt.Printf("\n")
 			}
 			assist++
