@@ -1,6 +1,6 @@
 # GeeORM
 
-*在**Go**语言中，**sync.Mutex**是一种互斥锁（**Mutual Exclusion Lock**）类型，它同步多个**goroutine**的访问。
+在**Go**语言中，**sync.Mutex**是一种互斥锁（**Mutual Exclusion Lock**）类型，它同步多个**goroutine**的访问。
 **一个互斥锁是在代码上创建一个互斥区域，该区域代码同时只能被一个**goroutine**执行。当其他**goroutine**试图访问这个互斥区域时，它们会被阻塞，直到获得锁的**goroutine**释放锁。
 **在**Go**语言中，**sync.Mutex**类型的变量可以通过**Lock**和**Unlock**方法来进行加锁和解锁操作。需要注意的是，**Lock**和**Unlock**操作必须成对出现，否则会导致死锁等问题。*
 
